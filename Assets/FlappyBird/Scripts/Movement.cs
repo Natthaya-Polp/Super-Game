@@ -25,6 +25,7 @@ namespace SuperGame.FlappyBird
                     myRigidbody2D.velocity = new Vector2(0, 0);
                     myRigidbody2D.AddForce(jumpForce * Vector2.up);
                     AudioManager.Instance.Play("jump");
+                    JumpAchievement.Instance.IncrementCounter();
                     animator.SetTrigger("Jump");
                 }
             }

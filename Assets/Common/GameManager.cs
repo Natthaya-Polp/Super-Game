@@ -89,6 +89,7 @@ namespace SuperGame
                 return;
 
             AudioManager.Instance.Play("lose");
+            DiesAchievements.Instance.IncrementCounter();
             isGameOver = true;
             Pause();
             lifeCount--;
