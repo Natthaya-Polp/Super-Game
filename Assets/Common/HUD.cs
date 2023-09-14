@@ -23,6 +23,9 @@ namespace SuperGame
         [SerializeField] Button restartButton;
         [SerializeField] Button nextLevel;
 
+        [Header("Achievement")] 
+        [SerializeField] CanvasGroup achievementUICanvasGroup;
+
         public event Action OnRestart;
         public event Action OnNext;
 
@@ -30,6 +33,8 @@ namespace SuperGame
         {
             nextLevel.onClick.AddListener(NotifyOnNext);
             restartButton.onClick.AddListener(NotifyOnRestart);
+
+            achievementUICanvasGroup.gameObject.SetActive(true);
         }
 
         public void NotifyOnNext()
