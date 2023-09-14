@@ -1,20 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using System;
+using TMPro;
 using PhEngine.Core;
 
 namespace SuperGame
 {
     public class DiesAchievements : Singleton<DiesAchievements>
     {
+        [SerializeField] public GameObject diesUi;
+        [SerializeField] public Slider diesProgress;
+        [SerializeField] public TMP_Text diesPercent;
+        [SerializeField] public Animation diesNotiAnimation;
+        
         private int diesCounter = 0;
-        public GameObject diesUi;
         private WaitForSeconds waitTimes = new WaitForSeconds(3f);
+
         protected override void InitAfterAwake()
         {
 
         }
+
         public void IncrementCounter()
         {
             diesCounter++;
@@ -23,17 +31,34 @@ namespace SuperGame
 
         public void PressComplete()
         {
-            if (diesCounter == 5)
+            if (diesCounter == 10)
             {
-                diesUi.SetActive(true);
-                StartCoroutine(ShowUI());
+                // diesUi.SetActive(true);
+                // StartCoroutine(ShowUI());
+                diesNotiAnimation.Play();
             }
         }
 
-        private IEnumerator ShowUI()
+        // private IEnumerator ShowUI()
+        // {
+        //     yield return waitTimes;
+        //     diesUi.SetActive(false);
+        // }
+
+        public void Update()
         {
-            yield return waitTimes;
-            diesUi.SetActive(false);
+            float diesValue = (float)diesCounter/10;
+            
+            if (diesCounter >= 100)
+            {
+                diesPercent.text = "100%";
+                diesProgress.value = 1;
+            }
+            else
+            {
+                diesPercent.text = (diesCounter*10 + "%");
+                diesProgress.value = diesValue;
+            }
         }
     }
 }

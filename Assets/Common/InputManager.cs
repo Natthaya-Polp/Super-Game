@@ -35,6 +35,7 @@ namespace SuperGame
            {
                if (Input.GetKeyDown(keyCode))
                    isJump = true;
+                   JumpAchievement.Instance.IncrementCounter();
            }
         }
     }
